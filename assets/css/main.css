@@ -1,14 +1,4 @@
-/**
-* Template Name: Logis - v1.3.0
-* Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
 /* Fonts */
 :root {
     --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -355,7 +345,7 @@
       font-family: var(--font-primary);
       font-size: 16px;
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(56, 18, 18, 0.6);
       white-space: nowrap;
       transition: 0.3s;
     }
@@ -371,7 +361,7 @@
     .navbar .active,
     .navbar .active:focus,
     .navbar li:hover>a {
-      color: #fff;
+      color: #290e0e;
     }
   
     .navbar .get-a-quote,
