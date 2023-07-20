@@ -323,6 +323,14 @@
     .navbar {
       padding: 0;
     }
+
+    .navbar ul li a {
+      color: #fff;
+    }
+
+    .active {
+      color: #fff;
+    }
   
     .navbar ul {
       margin: 0;
@@ -345,7 +353,7 @@
       font-family: var(--font-primary);
       font-size: 16px;
       font-weight: 400;
-      color: rgba(56, 18, 18, 0.6);
+      color: #fff;
       white-space: nowrap;
       transition: 0.3s;
     }
@@ -361,7 +369,7 @@
     .navbar .active,
     .navbar .active:focus,
     .navbar li:hover>a {
-      color: #290e0e;
+      color: rgba(255, 255, 255, 0.6);
     }
   
     .navbar .get-a-quote,
@@ -370,7 +378,7 @@
       padding: 8px 20px;
       margin-left: 30px;
       border-radius: 4px;
-      color: #fff;
+      color: #fffafa;
     }
   
     .navbar .get-a-quote:hover,
