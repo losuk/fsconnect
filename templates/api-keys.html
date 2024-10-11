@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Keys - FSConnect</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fsconnect-api-keys/styles.css') }}"> <!-- Your custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .visual {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 10px;
+            color: green;
+        }
+
+        .copy-button {
+            background-color: #28a745;
+        }
+
+        .copy-button:hover {
+            background-color: #218838;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">FSConnect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/api-docs">API Documentation</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="/logout" class="btn btn-outline-danger btn-sm ml-auto">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="/login" class="btn btn-outline-primary btn-sm">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/signup" class="btn btn-primary btn-sm">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>API Keys</h1>
+        <p>Manage your API keys below to securely access the FSConnect API.</p>
+        
+        <div class="section generate-key-section">
+            <h2>Generate a New API Key</h2>
+            <button id="generateKeyBtn" class="btn btn-primary">Generate New API Key</button>
+            <p id="key-message" class="message mt-2"></p>
+        </div>
+
+        <div class="section view-keys-section">
+            <h2>Your API Keys</h2>
+            <table id="api-keys-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>API Key</th>
+                        <th>Date Created</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="api-keys-body">
+                    <!-- API keys will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section security-practices-section">
+            <h2>Security Practices for API Keys</h2>
+            <ul>
+                <li>Never share your API keys publicly, including in code repositories.</li>
+                <li>Store your API keys securely, such as in environment variables or encrypted storage.</li>
+                <li>Regularly review and rotate your API keys to minimize the risk of exposure.</li>
+                <li>Monitor your API usage and revoke any keys that are no longer needed or appear suspicious.</li>
+            </ul>
+        </div>
+
+        <div class="section troubleshooting-section">
+            <h2>Troubleshooting</h2>
+            <p>If you encounter any issues with your API keys, check the following:</p>
+            <ul>
+                <li>Ensure you are using the correct API key in your requests.</li>
+                <li>Verify that your key has not been deleted or regenerated.</li>
+                <li>Contact FSConnect support if you continue to experience problems.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const GENERATE_API_KEY_URL = '{{ url_for("generate_key") }}';
+        const GET_API_KEYS_URL = '{{ url_for("get_api_keys") }}';
+        const REGENERATE_API_KEY_URL = (key) => `/api-keys/${key}/regenerate`;
+        const DELETE_API_KEY_URL = (key) => `/api-keys/${key}`;
+
+        document.getElementById('generateKeyBtn').addEventListener('click', function() {
+            fetch(GENERATE_API_KEY_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                // body: JSON.stringify({})  // If you need to send data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('key-message').innerText = `Your new API key: ${data.api_key}`;
+                appendApiKeyToTable(data.api_key, new Date());
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Error generating API key.');
+            });
+        });
+
+        function appendApiKeyToTable(apiKey, dateCreated) {
+            const tableBody = document.getElementById('api-keys-body');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <input type="text" readonly class="form-control" value="${apiKey}">
+                    <button class="btn btn-sm btn-success mt-2 copy-button" onclick="copyToClipboard('${apiKey}')">Copy</button>
+                </td>
+                <td>${dateCreated.toLocaleDateString()}</td>
+                <td>Active</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="regenerateApiKey('${apiKey}')">Regenerate</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteApiKey('${apiKey}')">Delete</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        }
+
+        function copyToClipboard(key) {
+            navigator.clipboard.writeText(key).then(() => {
+                alert('API Key copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+                alert('Failed to copy API key.');
+            });
+        }
+
+        function regenerateApiKey(key) {
+            if (!confirm('Are you sure you want to regenerate this API key? This will invalidate the old key.')) {
+                return;
+            }
+            fetch(REGENERATE_API_KEY_URL(key), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(`API Key regenerated: ${data.api_key}`);
+                updateApiKeyInTable(key, data.api_key);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Error regenerating API key.');
+            });
+        }
+
+        function deleteApiKey(key) {
+            if (!confirm('Are you sure you want to delete this API key? This action is irreversible.')) {
+                return;
+            }
+            fetch(DELETE_API_KEY_URL(key), {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                removeApiKeyFromTable(key);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Error deleting API key.');
+            });
+        }
+
+        function updateApiKeyInTable(oldKey, newKey) {
+            const tableBody = document.getElementById('api-keys-body');
+            const rows = tableBody.getElementsByTagName('tr');
+            for (let row of rows) {
+                const keyInput = row.cells[0].querySelector('input');
+                if (keyInput && keyInput.value === oldKey) {
+                    keyInput.value = newKey;
+                    // Update the copy button's onclick handler
+                    const copyButton = row.cells[0].querySelector('.copy-button');
+                    copyButton.setAttribute('onclick', `copyToClipboard('${newKey}')`);
+                    // Update the regenerate and delete buttons' onclick handlers
+                    row.cells[3].children[0].setAttribute('onclick', `regenerateApiKey('${newKey}')`);
+                    row.cells[3].children[1].setAttribute('onclick', `deleteApiKey('${newKey}')`);
+                    break;
+                }
+            }
+        }
+
+        function removeApiKeyFromTable(key) {
+            const tableBody = document.getElementById('api-keys-body');
+            const rows = tableBody.getElementsByTagName('tr');
+            for (let row of rows) {
+                const keyInput = row.cells[0].querySelector('input');
+                if (keyInput && keyInput.value === key) {
+                    tableBody.removeChild(row);
+                    break;
+                }
+            }
+        }
+
+        // Fetch and display existing API keys on page load
+        window.onload = function() {
+            fetch(GET_API_KEYS_URL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch API keys.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.api_keys.forEach(apiKey => {
+                    appendApiKeyToTable(apiKey.key, new Date(apiKey.created_at));
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error fetching API keys.');
+            });
+        };
+    </script>
+
+</body>
+</html>

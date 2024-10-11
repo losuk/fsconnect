@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSConnect - Empowering Your Innovations</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXabEdGsfA3Ia8YpQc3rL5Q7WjH8Sm5P0Heq68eZ+YZba9qPzV6s0b6Q8pA7S6sFD9Z69FQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            padding: 20px 40px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #007bff !important;
+        }
+
+        .navbar-nav .nav-link {
+            margin-left: 20px;
+            color: #555 !important;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background: url('https://via.placeholder.com/1920x1080') center center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 123, 255, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+        }
+
+        .hero .btn-custom {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .hero .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        /* Key Features Section Styles */
+        .key-features {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+
+        .key-features h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Sumz AI 2.0 Section Styles */
+        .sumz-ai-2-0 {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+
+        .sumz-ai-2-0 .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .sumz-ai-2-0-text,
+        .sumz-ai-2-0-image {
+            flex: 1 1 500px;
+            padding: 20px;
+        }
+
+        .sumz-ai-2-0-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .sumz-ai-2-0-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .sumz-ai-2-0-text ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sumz-ai-2-0-text ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .sumz-ai-2-0-text ul li::before {
+            content: '\f00c'; /* Font Awesome check icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #28a745;
+        }
+
+        .sumz-ai-2-0-image img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .sumz-ai-2-0-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sumz AI 2.5 Section Styles */
+        .sumz-ai-2-5 {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+
+        .sumz-ai-2-5 .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .sumz-ai-2-5-text,
+        .sumz-ai-2-5-image {
+            flex: 1 1 500px;
+            padding: 20px;
+        }
+
+        .sumz-ai-2-5-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        .sumz-ai-2-5-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .sumz-ai-2-5-text .launch-date {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .sumz-ai-2-5-text h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        .sumz-ai-2-5-text ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sumz-ai-2-5-text ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .sumz-ai-2-5-text ul li::before {
+            content: '\f00c'; /* Font Awesome check icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #28a745;
+        }
+
+        .sumz-ai-2-5-image img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .sumz-ai-2-5-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* API Section Styles */
+        .api-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+
+        .api-section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .api-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .api-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .api-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .api-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .api-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        .api-card ul {
+            list-style: disc inside;
+            padding-left: 0;
+        }
+
+        .api-card ul li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .api-section .img-fluid {
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .api-section .img-fluid:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer Styles */
+        footer {
+            padding: 40px 0;
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        footer .footer-links a {
+            color: #ffc107;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+
+        footer .footer-links a:hover {
+            color: #fff;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .sumz-ai-2-0 .container,
+            .sumz-ai-2-5 .container {
+                flex-direction: column;
+            }
+
+            .sumz-ai-2-0-text,
+            .sumz-ai-2-0-image,
+            .sumz-ai-2-5-text,
+            .sumz-ai-2-5-image {
+                padding: 10px;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">FSConnect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api-docs">API Documentation</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="/logout" class="btn btn-outline-danger btn-sm ml-auto">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="/login" class="btn btn-outline-primary btn-sm">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/signup" class="btn btn-primary btn-sm">Sign Up</a>
+                </li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Empower Your Innovations with FSConnect</h1>
+            <p>Integrate powerful APIs and AI solutions seamlessly into your applications.</p>
+            <a href="/api-docs" class="btn btn-custom">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="key-features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-cogs"></i>
+                        <h4>Simple Integration</h4>
+                        <p>Our APIs are designed for easy and quick integration with your applications.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Reliable Security</h4>
+                        <p>We prioritize your security, ensuring your data and connections are safe.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Scalable Solutions</h4>
+                        <p>Our APIs are built to grow with your business, adapting to your needs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-code"></i>
+                        <h4>Comprehensive API</h4>
+                        <p>Access a range of AI models and services through our user-friendly API.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-headset"></i>
+                        <h4>Dedicated Support</h4>
+                        <p>Our team is here to help you with any questions or issues you may encounter.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Fast Performance</h4>
+                        <p>Experience lightning-fast API responses to keep your applications running smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sumz AI 2.0 Section -->
+    <section class="sumz-ai-2-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text Content -->
+                <div class="col-md-6 sumz-ai-2-0-text">
+                    <h2>Introducing <span class="highlight">Sumz AI 2.0</span></h2>
+                    <p class="lead">Our powerful AI model designed for effective summarization and content generation. Experience the future of intelligent solutions that transform data into meaningful insights.</p>
+                    <h4>Why Choose Sumz AI 2.0?</h4>
+                    <ul>
+                        <li>High Accuracy: Achieve precise summarization with advanced algorithms tailored for your needs.</li>
+                        <li>Fast Processing: Get real-time results with lightning speed, ensuring you stay ahead in your tasks.</li>
+                        <li>Customizable: Tailor the AI model to fit your specific use cases for maximum effectiveness.</li>
+                        <li>Easy Integration: Seamlessly connect with your existing systems without hassle.</li>
+                    </ul>
+                    <a href="https://sumzai2.netlify.app" target="_blank" class="btn btn-custom mt-4">Try Sumz AI 2.0</a>
+                </div>
+                <!-- Image -->
+                <div class="col-md-6 sumz-ai-2-0-image">
+                    <img src="https://media.licdn.com/dms/image/D4D3DAQEMMk47AX9XqQ/image-scale_191_1128/0/1692785993065/sumz_ai_cover?e=2147483647&v=beta&t=eYpQhpirPZCDMaMwJ_WXkCXwgr4aN6olOvWneyvIO04" alt="Sumz AI 2.0" class="img-fluid" style="height: 300px; width: 600px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sumz AI 2.5 Section -->
+    <section class="sumz-ai-2-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Image -->
+                <div class="col-md-6 sumz-ai-2-5-image order-md-2">
+                    <img src="https://media.licdn.com/dms/image/D4D3DAQEMMk47AX9XqQ/image-scale_191_1128/0/1692785993065/sumz_ai_cover?e=2147483647&v=beta&t=eYpQhpirPZCDMaMwJ_WXkCXwgr4aN6olOvWneyvIO04" alt="Sumz AI 2.5" class="img-fluid" style="height: 300px; width: 600px;">
+                </div>
+                <!-- Text Content -->
+                <div class="col-md-6 sumz-ai-2-5-text order-md-1">
+                    <h2>Welcome to Our Newest AI: <span class="highlight">Sumz AI 2.5</span></h2>
+                    <p class="lead">We are thrilled to announce the upcoming launch of Sumz AI 2.5, set to revolutionize content summarization and generation. Stay tuned for its release on <strong>May 20th, 2025</strong>.</p>
+                    <h4>Key Features of Sumz AI 2.5:</h4>
+                    <ul>
+                        <li>**Enhanced Context Understanding:** Improved algorithms for deeper comprehension of complex texts.</li>
+                        <li>**Multilingual Support:** Ability to summarize and generate content in multiple languages.</li>
+                        <li>**Advanced Customization:** More parameters to fine-tune outputs according to specific requirements.</li>
+                        <li>**Higher Throughput:** Increased processing capacity to handle larger volumes of data efficiently.</li>
+                        <li>**Integration Flexibility:** Enhanced compatibility with various platforms and frameworks.</li>
+                        <li>**User-friendly Dashboard:** New interface for easier management and monitoring of API usage.</li>
+                    </ul>
+                    <a href="/sumz-ai-2.5" class="btn btn-custom mt-4">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section class="api-section">
+        <div class="container">
+            <h2 class="text-center">Our APIs</h2>
+            <p class="text-center lead">FSConnect offers powerful and versatile APIs to integrate with your applications seamlessly.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="api-card">
+                        <h3>Sumz AI 2.0 API</h3>
+                        <p>The Sumz AI 2.0 API allows you to leverage our advanced summarization and content generation capabilities. It’s designed to be simple, efficient, and powerful.</p>
+                        <h4>Features:</h4>
+                        <ul>
+                            <li>Real-time summarization and content generation</li>
+                            <li>Customizable parameters for tailored results</li>
+                            <li>Easy integration with robust documentation</li>
+                        </ul>
+                        <a href="/api-docs" class="btn btn-primary">Explore Sumz AI 2.0 API</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://media.licdn.com/dms/image/D4D3DAQEMMk47AX9XqQ/image-scale_191_1128/0/1692785993065/sumz_ai_cover?e=2147483647&v=beta&t=eYpQhpirPZCDMaMwJ_WXkCXwgr4aN6olOvWneyvIO04" alt="API Overview" class="img-fluid rounded" style="height: 300px; width: 600px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About FSConnect</h5>
+                    <p>FSConnect provides cutting-edge APIs and AI solutions to empower developers and businesses to innovate and excel.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="/">Home</a>
+                        <a href="/api-docs">API Documentation</a>
+                        <a href="/login">Login</a>
+                        <a href="/signup">Sign Up</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact Us</h5>
+                    <p>Email: support@fsconnect.com</p>
+                    <p>Phone: +1 (234) 567-8901</p>
+                </div>
+            </div>
+            <hr>
+            <p>&copy; 2024 FSConnect, Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

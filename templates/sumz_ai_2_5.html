@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumz AI 2.5 - Features & Release Date</title>
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fsconnect-api-keys/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .release-date {
+            font-size: 1.2em;
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            margin: 15px 0;
+            background: #f0f8ff;
+            border: 1px solid #d9e2ec;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-title {
+            font-size: 1.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            font-size: 1.1em;
+            color: #495057;
+        }
+
+        .back-button {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn-back {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #343a40;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .btn-back:hover {
+            background-color: #495057;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">FSConnect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/api-docs">API Documentation</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item ml-auto">
+                    <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item ml-auto">
+                    <a href="/login" class="btn btn-outline-primary btn-sm">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/signup" class="btn btn-primary btn-sm">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h1>Sumz AI 2.5</h1>
+        <p class="release-date"><strong>Release Date:</strong> May 20th, 2025</p>
+
+        <h2>Features</h2>
+
+        <!-- Features List with Cards -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">🌟 Advanced Natural Language Processing</div>
+                    <div class="feature-description">Enhanced understanding and generation of human language.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">📊 Improved Data Analytics</div>
+                    <div class="feature-description">Deeper insights and more accurate data processing capabilities.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">🎨 Enhanced User Interface</div>
+                    <div class="feature-description">More intuitive and user-friendly design for better user experience.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">🔗 Seamless Integration</div>
+                    <div class="feature-description">Easy connectivity with various external services.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">🔒 Robust Security Features</div>
+                    <div class="feature-description">Advanced security protocols to protect user data.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">🤝 Real-Time Collaboration Tools</div>
+                    <div class="feature-description">Facilitate teamwork and collaboration in real-time.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">📄 Automated Reporting System</div>
+                    <div class="feature-description">Generate comprehensive reports automatically.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">📊 Customizable Dashboards</div>
+                    <div class="feature-description">Personalize your dashboard to display relevant information.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">💡 AI-Driven Insights</div>
+                    <div class="feature-description">Receive intelligent suggestions based on data analysis.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-title">🌐 Multi-Language Support</div>
+                    <div class="feature-description">Operate Sumz AI 2.5 in multiple languages to cater to a global audience.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-button">
+            <a href="/" class="btn btn-back">← Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
