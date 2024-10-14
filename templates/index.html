@@ -40,7 +40,7 @@
 
         /* Hero Section Styles */
         .hero {
-            background: url('https://via.placeholder.com/1920x1080') center center/cover no-repeat;
+            background: url('../static/images/background.png') center center/cover no-repeat;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -509,7 +509,7 @@
             <div class="row align-items-center">
                 <!-- Image -->
                 <div class="col-md-6 sumz-ai-2-5-image order-md-2">
-                    <img src="https://media.licdn.com/dms/image/D4D3DAQEMMk47AX9XqQ/image-scale_191_1128/0/1692785993065/sumz_ai_cover?e=2147483647&v=beta&t=eYpQhpirPZCDMaMwJ_WXkCXwgr4aN6olOvWneyvIO04" alt="Sumz AI 2.5" class="img-fluid" style="height: 300px; width: 600px;">
+                    <img src="{{ url_for('static', filename='images/sumzai2.5.png') }}" alt="Sumz AI 2.5">
                 </div>
                 <!-- Text Content -->
                 <div class="col-md-6 sumz-ai-2-5-text order-md-1">
@@ -549,8 +549,8 @@
                         <a href="/api-docs" class="btn btn-primary">Explore Sumz AI 2.0 API</a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <img src="https://media.licdn.com/dms/image/D4D3DAQEMMk47AX9XqQ/image-scale_191_1128/0/1692785993065/sumz_ai_cover?e=2147483647&v=beta&t=eYpQhpirPZCDMaMwJ_WXkCXwgr4aN6olOvWneyvIO04" alt="API Overview" class="img-fluid rounded" style="height: 300px; width: 600px;">
+                <div class="col-md-6 sumz-ai-2-5-image order-md-2">
+                    <img src="{{ url_for('static', filename='images/sumzai2.0api.png') }}" alt="Sumz AI 2.0 Api" style="width: 450px; border-radius: 5px;">
                 </div>
             </div>
         </div>
@@ -575,8 +575,8 @@
                 </div>
                 <div class="col-md-3">
                     <h5>Contact Us</h5>
-                    <p>Email: support@fsconnect.com</p>
-                    <p>Phone: +1 (234) 567-8901</p>
+                    <p>Email: support@fsconnect.online</p>
+                    <!-- <p>Phone: +1 (234) 567-8901</p> -->
                 </div>
             </div>
             <hr>
